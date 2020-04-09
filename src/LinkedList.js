@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 function Node(value) {
   this.next = null;
   this.value = value;
@@ -6,14 +7,54 @@ function Node(value) {
 class LinkedList {
   constructor(headValue) {
     if (headValue !== undefined) {
-      this.head = new Node(headValue);
+      this.head = new Node(headValue); //rootnode
       this.tail = this.head;
+      // this.value = null;
+      // this.next = null;
     }
   }
 
-  appendToTail(value) {}
+  appendToTail(value) {
+    let newNode = new Node(value); //chhildnode
 
-  removeHead() {}
+    if (this.head === undefined) {
+      this.head = newNode;
+      this.tail = this.head;
+      return this.tail;
+    }
+
+    this.value = value;
+    // console.log('val', value, 'head', this.head);
+    // console.log('next', this.next, 'tail', this.tail);
+    this.head.next = this.tail;
+    this.tail.value = this.value;
+    // this.tail.value = this.value;
+    return this.tail;
+    // console.log(this.tail)
+    // return this.tail = this.value;
+  }
+
+  // linkedList.appendToTail(3);
+  // Node(3) {
+  //   this.next = 4;
+  //   this.value = 3;
+  // }
+
+  // linkedList.appendToTail(4);
+  // Node(value) {
+  //   this.next = null;
+  //   this.value = 4;
+  // }
+
+  removeHead() {
+    let temp = this.head;
+    this.head.next = this.temp.next;
+    //temp = null;
+    return temp;
+    // temp = head
+    // head = head.next
+    // delete temp
+  }
 
   findNode(value) {}
 

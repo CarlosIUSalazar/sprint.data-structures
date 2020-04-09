@@ -46,6 +46,7 @@ describe("Linked Lists", () => {
 
     it("should return a node", () => {
       const newNode = linkedList.appendToTail(3);
+      //console.log("newNodeeeeeeeeeeeeeeeeeeeeeee", newNode.value);
       expect(newNode.value).to.equal(3);
       expect(newNode.next).to.eql(null);
       expect(newNode).to.deep.equal(linkedList.tail);
@@ -59,7 +60,6 @@ describe("Linked Lists", () => {
 
     it("should be okay to appendToTail when there is no initial value", () => {
       linkedList = new LinkedList();
-
       const newNode = linkedList.appendToTail(5);
       expect(linkedList.head).to.deep.equal(newNode);
       expect(linkedList.tail).to.deep.equal(newNode);
@@ -96,7 +96,7 @@ describe("Linked Lists", () => {
       linkedList.appendToTail(3);
       const nodeValue6 = linkedList.appendToTail(6);
       linkedList.appendToTail(2);
-
+      console.log(linkedList);
       expect(linkedList.findNode(6)).to.deep.equal(nodeValue6);
       expect(linkedList.findNode(6).value).to.equal(6);
     });
