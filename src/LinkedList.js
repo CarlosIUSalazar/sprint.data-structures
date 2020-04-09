@@ -7,56 +7,51 @@ function Node(value) {
 class LinkedList {
   constructor(headValue) {
     if (headValue !== undefined) {
-      this.head = new Node(headValue); //rootnode
+      this.head = new Node(headValue);
       this.tail = this.head;
-      // this.value = null;
-      // this.next = null;
+      this.length = 0;
     }
   }
 
   appendToTail(value) {
     let newNode = new Node(value); //chhildnode
 
-    if (this.head === undefined) {
+    if (!this.head) {
+      //if there is no head
       this.head = newNode;
       this.tail = this.head;
       return this.tail;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
-
-    this.value = value;
-    // console.log('val', value, 'head', this.head);
-    // console.log('next', this.next, 'tail', this.tail);
-    this.head.next = this.tail;
-    this.tail.value = this.value;
-    // this.tail.value = this.value;
+    this.length++;
+    //console.log("AAAAAAAAAAA", this, this.tail, newNode)
     return this.tail;
-    // console.log(this.tail)
-    // return this.tail = this.value;
   }
-
-  // linkedList.appendToTail(3);
-  // Node(3) {
-  //   this.next = 4;
-  //   this.value = 3;
-  // }
-
-  // linkedList.appendToTail(4);
-  // Node(value) {
-  //   this.next = null;
-  //   this.value = 4;
-  // }
 
   removeHead() {
-    let temp = this.head;
-    this.head.next = this.temp.next;
-    //temp = null;
-    return temp;
-    // temp = head
-    // head = head.next
-    // delete temp
+    if (!this.head) {
+      return undefined;
+    }
+
+    let currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    return currentHead;
   }
 
-  findNode(value) {}
+  findNode(value) {
+    if (!this.head) {
+      return undefined;
+    }
+    let current = this.head;
+    while (current.next) {
+      if (current.value === value) {
+        return current;
+      }
+    }
+  }
 
   /*
 +-------------------------+
