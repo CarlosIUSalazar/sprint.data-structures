@@ -9,7 +9,7 @@
 /* This is a simple hashing function. You don't need to worry about it, just use it
 |* to turn any string into an integer.
 */
-/////
+///////
 function simpleHash(str, tableSize) {
   let hash = 0;
   for (let i = 0; i < str.length; i += 1) {
