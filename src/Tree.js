@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 class Tree {
   constructor(value) {
     this.value = value;
@@ -9,10 +8,10 @@ class Tree {
     this.children.push(new Tree(value));
   }
 
-  contains(target) {
+  contains(value) {
     let result = false;
     let inner = function(obj) {
-      if (obj.value === target) {
+      if (obj.value === value) {
         result = true;
       }
       obj.children.forEach(function(child) {

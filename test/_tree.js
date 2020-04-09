@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions, no-prototype-builtins */
-
 const { expect } = require("chai");
 const { isClass } = require("./utilities");
 const Tree = require("../src/Tree");
@@ -21,7 +19,7 @@ describe("Trees", () => {
     });
   });
 
-  describe("The addChild method", () => {
+  describe.only("The addChild method", () => {
     it("should exist on the Tree prototype", () => {
       expect(Tree.prototype.addChild).to.exist;
     });
