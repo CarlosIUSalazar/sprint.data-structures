@@ -1,12 +1,27 @@
+/* eslint-disable prettier/prettier */
 class Tree {
   constructor(value) {
     this.value = value;
     this.children = [];
   }
 
-  addChild(value) {}
+  addChild(value) {
+    this.children.push(new Tree(value));
+  }
 
-  contains(value) {}
+  contains(target) {
+    let result = false;
+    let inner = function(obj) {
+      if (obj.value === target) {
+        result = true;
+      }
+      obj.children.forEach(function(child) {
+        inner(child);
+      });
+    };
+    inner(this);
+    return result;
+  }
 
   /*
 +-------------------------+
@@ -31,3 +46,4 @@ requirements for ALL data structures in this exercise.
 |X                               X
 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 */
+module.exports = Tree;
