@@ -22,6 +22,27 @@ class Tree {
     return result;
   }
 
+  remove(value) {
+    let result = undefined;
+    let recursion = (node) => {
+      // console.log("node.childnre[0]",node.children[0].value)
+      // console.log("value",value)
+      if (node.children[0].value === value) {
+        //console.log("parent",node);
+        result = node.children[0].value;
+        node.children[0] = null;
+        return;
+      }
+      if (node.children.length !== 0) {
+        node.children.forEach((element) => {
+          recursion(element);
+        });
+      }
+    };
+    recursion(this);
+    return result;
+  }
+
   /*
 +-------------------------+
 | Advanced Requirements!! |

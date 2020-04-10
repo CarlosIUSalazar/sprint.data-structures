@@ -14,7 +14,7 @@ class LinkedList {
   }
 
   appendToTail(value) {
-    let newNode = new Node(value); //chhildnode
+    let newNode = new Node(value); //childnode
 
     if (!this.head) {
       //if there is no head
