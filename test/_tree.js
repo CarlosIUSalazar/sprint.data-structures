@@ -61,7 +61,7 @@ describe("Trees", () => {
     });
   });
 
-  describe.only("The remove method", () => {
+  describe("The remove method", () => {
     it("should exist on the Tree prototype", () => {
       expect(Tree.prototype.remove).to.exist;
     });
