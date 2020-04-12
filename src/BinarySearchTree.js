@@ -1,77 +1,63 @@
-class Node {
+class BinarySearchTree {
   constructor(value) {
     this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-class BinarySearchTree {
-  constructor() {
-    this.newNode = class Node {
-      constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-      }
-    };
-    this.root = null;
+    this.right = undefined;
+    this.left = undefined;
   }
 
   insert(value) {
-    let newNode = new this.newNode(value);
-    if (this.root === null) {
-      //if there is no root
-      this.root = newNode;
-      return this;
-    } else {
-      //if there is a root then
-      let current = this.root;
-      while (true) {
-        if (value === current.value) return undefined; //for duplicates
-        if (value < current.value) {
-          if (current.left === null) {
-            //if there is nothing on the left we found our spot
-            current.left = newNode;
-            return this;
-          } else {
-            current = current.left;
-          }
-        } else if (value > current.value) {
-          if (current.right === null) {
-            current.right = newNode;
-            return this;
-          } else {
-            //keep looking
-            current = current.right;
-          }
+    const child = new BinarySearchTree(value);
+    function hasChild(node) {
+      if (value > node.value) {
+        if (node.right === undefined) {
+          node.right = child;
+        } else {
+          hasChild(node.right);
         }
+      } else if (value < node.value) {
+        if (node.left === undefined) {
+          node.left = child;
+        } else {
+          hasChild(node.left);
+        }
+      } else {
+        return this;
       }
     }
+    hasChild(this);
+    return this;
   }
 
   contains(value) {
-    if (this.root === null) {
-      return false;
-    }
-    let current = this.root;
-    let found = false;
-    while (current && !found) {
-      //while there's something to loop over and we haven't found it
-      if (value < current.value) {
-        current = current.left;
-      } else if (value > current.value) {
-        current = current.right;
-      } else {
-        //if we found it
-        return true;
+    let hasValue = false;
+    function hasChild(node) {
+      if (node.value === value) {
+        hasValue = true;
+        return;
+      }
+      if (value > node.value && node.right) {
+        hasChild(node.right);
+      } else if (value < node.value && node.left) {
+        hasChild(node.left);
       }
     }
-    //if we don't find it
-    return false;
+    hasChild(this);
+    return hasValue;
   }
 
-  traverseDepthFirstInOrder() {}
+  traverseDepthFirstInOrder(callback) {
+    function hasChild(node) {
+      if (!node.left) return callback(node);
+      if (node.left) {
+        hasChild(node.left);
+        callback(node);
+      }
+      if (node.right) {
+        hasChild(node.right);
+      }
+    }
+    hasChild(this);
+  }
 }
 
 /*

@@ -8,7 +8,7 @@ const { isClass } = require("./utilities");
 let tree;
 let anotherTree;
 let fullBST;
-describe.only("The Binary Search Tree", () => {
+describe("The Binary Search Tree", () => {
   beforeEach(() => {
     tree = new BinarySearchTree(1);
     //console.log('AAAAAAAAAAAAA',BinarySearchTree);
@@ -133,96 +133,96 @@ requirements for ALL data structures in this exercise.
 Uncomment by removing the 'x'.
 */
 
-  describe("The traverseBreadthFirst method", () => {
-    it("should exist on the Tree prototype", () => {
-      expect(BinarySearchTree.prototype.traverseBreadthFirst).to.exist;
-      expect(typeof BinarySearchTree.prototype.traverseBreadthFirst).to.equal(
-        "function"
-      );
-    });
+  // describe("The traverseBreadthFirst method", () => {
+  //   it("should exist on the Tree prototype", () => {
+  //     expect(BinarySearchTree.prototype.traverseBreadthFirst).to.exist;
+  //     expect(typeof BinarySearchTree.prototype.traverseBreadthFirst).to.equal(
+  //       "function"
+  //     );
+  //   });
 
-    it("should traverse across the binary tree before going down", () => {
-      const traverseBreadthFirstResult = [];
-      anotherTree.traverseBreadthFirst((node) =>
-        traverseBreadthFirstResult.push(node.value)
-      );
-      expect(traverseBreadthFirstResult).to.eql([
-        10,
-        5,
-        15,
-        3,
-        8,
-        14,
-        20,
-        7,
-        9,
-        17,
-      ]);
-    });
-  });
+  //   it("should traverse across the binary tree before going down", () => {
+  //     const traverseBreadthFirstResult = [];
+  //     anotherTree.traverseBreadthFirst((node) =>
+  //       traverseBreadthFirstResult.push(node.value)
+  //     );
+  //     expect(traverseBreadthFirstResult).to.eql([
+  //       10,
+  //       5,
+  //       15,
+  //       3,
+  //       8,
+  //       14,
+  //       20,
+  //       7,
+  //       9,
+  //       17,
+  //     ]);
+  //   });
+  // });
 
-  describe("The traverseDepthFirstPreOrder method", () => {
-    it("should exist on the Tree prototype", () => {
-      expect(BinarySearchTree.prototype.traverseDepthFirstPreOrder).to.exist;
-    });
+  // describe("The traverseDepthFirstPreOrder method", () => {
+  //   it("should exist on the Tree prototype", () => {
+  //     expect(BinarySearchTree.prototype.traverseDepthFirstPreOrder).to.exist;
+  //   });
 
-    it("should traverse the root, left branch, and right branch in that order", () => {
-      const result = [];
-      anotherTree.traverseDepthFirstPreOrder((node) => result.push(node.value));
-      expect(result).to.eql([10, 5, 3, 8, 7, 9, 15, 14, 20, 17]);
-    });
+  //   it("should traverse the root, left branch, and right branch in that order", () => {
+  //     const result = [];
+  //     anotherTree.traverseDepthFirstPreOrder((node) => result.push(node.value));
+  //     expect(result).to.eql([10, 5, 3, 8, 7, 9, 15, 14, 20, 17]);
+  //   });
 
-    it("should take a function as the parameter", () => {
-      const x = (node) => node;
-      tree.traverseDepthFirstPreOrder(x);
-      expect(x).to.be.a("function");
-    });
-  });
+  //   it("should take a function as the parameter", () => {
+  //     const x = (node) => node;
+  //     tree.traverseDepthFirstPreOrder(x);
+  //     expect(x).to.be.a("function");
+  //   });
+  // });
 
-  describe("The traverseDepthFirstPostOrder method", () => {
-    it("should exist on the Tree prototype", () => {
-      expect(BinarySearchTree.prototype.traverseDepthFirstPostOrder).to.exist;
-    });
+  // describe("The traverseDepthFirstPostOrder method", () => {
+  //   it("should exist on the Tree prototype", () => {
+  //     expect(BinarySearchTree.prototype.traverseDepthFirstPostOrder).to.exist;
+  //   });
 
-    it("should traverse the left branch, right branch, and root in that order", () => {
-      const result = [];
-      anotherTree.traverseDepthFirstPostOrder((node) =>
-        result.push(node.value)
-      );
-      expect(result).to.eql([3, 7, 9, 8, 5, 14, 17, 20, 15, 10]);
-    });
+  //   it("should traverse the left branch, right branch, and root in that order", () => {
+  //     const result = [];
+  //     anotherTree.traverseDepthFirstPostOrder((node) =>
+  //       result.push(node.value)
+  //     );
+  //     expect(result).to.eql([3, 7, 9, 8, 5, 14, 17, 20, 15, 10]);
+  //   });
 
-    it("should take a function as the parameter", () => {
-      const x = (node) => node;
-      tree.traverseDepthFirstPostOrder(x);
-      expect(x).to.be.a("function");
-    });
-  });
+  //   it("should take a function as the parameter", () => {
+  //     const x = (node) => node;
+  //     tree.traverseDepthFirstPostOrder(x);
+  //     expect(x).to.be.a("function");
+  //   });
+  // });
 
-  describe("The checkIfFull method", () => {
-    it("should exist on the Tree prototype", () => {
-      expect(BinarySearchTree.prototype.checkIfFull).to.exist;
-    });
+  // describe("The checkIfFull method", () => {
+  //   it("should exist on the Tree prototype", () => {
+  //     expect(BinarySearchTree.prototype.checkIfFull).to.exist;
+  //   });
 
-    it("should return false if a node has only 1 child", () => {
-      expect(anotherTree.checkIfFull()).to.equal(false);
-    });
+  //   it("should return false if a node has only 1 child", () => {
+  //     expect(anotherTree.checkIfFull()).to.equal(false);
+  //   });
 
-    it("should return true if each node has either 0 or 2 children", () => {
-      expect(fullBST.checkIfFull()).to.equal(true);
-    });
-  });
+  //   it("should return true if each node has either 0 or 2 children", () => {
+  //     expect(fullBST.checkIfFull()).to.equal(true);
+  //   });
+  // });
 
-  describe("The checkIfBalanced method", () => {
-    it("should exist on the Tree prototype", () => {
-      expect(BinarySearchTree.prototype.checkIfBalanced).to.exist;
-    });
+  // describe("The checkIfBalanced method", () => {
+  //   it("should exist on the Tree prototype", () => {
+  //     expect(BinarySearchTree.prototype.checkIfBalanced).to.exist;
+  //   });
 
-    it("should return false if the height of each branch differs by more than 1", () => {
-      expect(fullBST.checkIfBalanced()).to.equal(false);
-    });
-    it("should return true if the height of each branch differs by no more than 1", () => {
-      expect(anotherTree.checkIfBalanced()).to.equal(true);
-    });
-  });
+  //   it("should return false if the height of each branch differs by more than 1", () => {
+  //     expect(fullBST.checkIfBalanced()).to.equal(false);
+  //   });
+  //   it("should return true if the height of each branch differs by no more than 1", () => {
+  //     expect(anotherTree.checkIfBalanced()).to.equal(true);
+  //   });
+  // });
 });
