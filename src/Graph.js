@@ -102,3 +102,20 @@ module.exports = Graph;
 //       delete this.nodes[vertex]; //Deletes the remaining empty array that is now disconnected
 //   }
 // }
+
+// let g = new Graph();
+// g.addNode("Tokyo")
+// g.addNode("Dallas")
+// g.addNode("Aspen")
+// g.addNode("Los Angeles")
+// g.addNode("Hong Kong")
+// g.addEdge("Dallas","Tokyo")
+// g.addEdge("Dallas","Aspen")
+// g.addEdge("Hong Kong","Dallas")
+// g.addEdge("Hong Kong","Tokyo")
+// g.addEdge("Los Angeles","Hong Kong")
+// g.addEdge("Los Angeles","Aspen")
+// //g.removeEdge("Dallas","Aspen")
+// g.removeNode("Hong Kong")
+// g.removeNode("Aspen")
+// console.log(g)
