@@ -120,125 +120,125 @@ requirements for ALL data structures in this exercise.
 Uncomment by removing the 'x'.
 */
 
-  describe("The forEach method", () => {
-    it("should exist on the LinkedList prototype", () => {
-      expect(LinkedList.prototype.forEach).to.exist;
-      expect(typeof LinkedList.prototype.forEach).to.equal("function");
-    });
+  // describe("The forEach method", () => {
+  //   it("should exist on the LinkedList prototype", () => {
+  //     expect(LinkedList.prototype.forEach).to.exist;
+  //     expect(typeof LinkedList.prototype.forEach).to.equal("function");
+  //   });
 
-    it("should run callback function on the value of each node in the linked list", () => {
-      const results = [];
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      linkedList.forEach((value) => results.push(value));
-      expect(results).to.eql([2, 6, 3, 5]);
-    });
+  //   it("should run callback function on the value of each node in the linked list", () => {
+  //     const results = [];
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     linkedList.forEach((value) => results.push(value));
+  //     expect(results).to.eql([2, 6, 3, 5]);
+  //   });
 
-    it("should not tamper the node values", () => {
-      linkedList = new LinkedList();
+  //   it("should not tamper the node values", () => {
+  //     linkedList = new LinkedList();
 
-      const valuesToBeInserted = [3, 6, 2];
-      for (const val of valuesToBeInserted) {
-        linkedList.appendToTail(val);
-      }
+  //     const valuesToBeInserted = [3, 6, 2];
+  //     for (const val of valuesToBeInserted) {
+  //       linkedList.appendToTail(val);
+  //     }
 
-      const results = [];
-      linkedList.forEach((value) => results.push(value));
+  //     const results = [];
+  //     linkedList.forEach((value) => results.push(value));
 
-      let currentNode = linkedList.head;
-      for (const val of valuesToBeInserted) {
-        expect(currentNode.value).to.deep.equal(val);
-        currentNode = currentNode.next;
-      }
-    });
-  });
+  //     let currentNode = linkedList.head;
+  //     for (const val of valuesToBeInserted) {
+  //       expect(currentNode.value).to.deep.equal(val);
+  //       currentNode = currentNode.next;
+  //     }
+  //   });
+  // });
 
-  describe("The print method", () => {
-    it("should exist on the LinkedList prototype", () => {
-      expect(LinkedList.prototype.print).to.exist;
-      expect(typeof LinkedList.prototype.print).to.equal("function");
-    });
+  // describe("The print method", () => {
+  //   it("should exist on the LinkedList prototype", () => {
+  //     expect(LinkedList.prototype.print).to.exist;
+  //     expect(typeof LinkedList.prototype.print).to.equal("function");
+  //   });
 
-    it("should return a string of all values in the linked list", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      expect(linkedList.print()).to.equal("2, 6, 3, 5");
-    });
-  });
+  //   it("should return a string of all values in the linked list", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     expect(linkedList.print()).to.equal("2, 6, 3, 5");
+  //   });
+  // });
 
-  describe("The insertHead method", () => {
-    it("should exist on the LinkedList prototype", () => {
-      expect(LinkedList.prototype.insertHead).to.exist;
-      expect(typeof LinkedList.prototype.insertHead).to.equal("function");
-    });
+  // describe("The insertHead method", () => {
+  //   it("should exist on the LinkedList prototype", () => {
+  //     expect(LinkedList.prototype.insertHead).to.exist;
+  //     expect(typeof LinkedList.prototype.insertHead).to.equal("function");
+  //   });
 
-    it("should insert a new node to the head property and move previous node to the next property of the new head", () => {
-      const oldHead = linkedList.head;
-      const newHead = linkedList.insertHead(3);
-      expect(linkedList.head.value).to.equal(3);
-      expect(linkedList.head).to.deep.equal(newHead);
-      expect(linkedList.head.next).to.deep.equal(oldHead);
-    });
-  });
+  //   it("should insert a new node to the head property and move previous node to the next property of the new head", () => {
+  //     const oldHead = linkedList.head;
+  //     const newHead = linkedList.insertHead(3);
+  //     expect(linkedList.head.value).to.equal(3);
+  //     expect(linkedList.head).to.deep.equal(newHead);
+  //     expect(linkedList.head.next).to.deep.equal(oldHead);
+  //   });
+  // });
 
-  describe("The insertAfter method", () => {
-    it("should exist on the LinkedList prototype", () => {
-      expect(LinkedList.prototype.insertAfter).to.exist;
-      expect(typeof LinkedList.prototype.insertAfter).to.equal("function");
-    });
+  // describe("The insertAfter method", () => {
+  //   it("should exist on the LinkedList prototype", () => {
+  //     expect(LinkedList.prototype.insertAfter).to.exist;
+  //     expect(typeof LinkedList.prototype.insertAfter).to.equal("function");
+  //   });
 
-    it("should insert a new node after node referenced in arguments", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      linkedList.insertAfter(linkedList.findNode(6), 9);
-      expect(linkedList.print()).to.equal("2, 6, 9, 3, 5");
-    });
+  //   it("should insert a new node after node referenced in arguments", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     linkedList.insertAfter(linkedList.findNode(6), 9);
+  //     expect(linkedList.print()).to.equal("2, 6, 9, 3, 5");
+  //   });
 
-    it("should raise exception when refNode is not supplemented", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      expect(function insertAfter() {
-        linkedList.insertAfter(undefined, 9);
-      }).to.throw();
-      expect(function insertAfter() {
-        linkedList.insertAfter(null, 9);
-      }).to.throw();
-    });
+  //   it("should raise exception when refNode is not supplemented", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     expect(function insertAfter() {
+  //       linkedList.insertAfter(undefined, 9);
+  //     }).to.throw();
+  //     expect(function insertAfter() {
+  //       linkedList.insertAfter(null, 9);
+  //     }).to.throw();
+  //   });
 
-    it("should raise exception when refNode is not a valid node", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      expect(function insertAfter() {
-        linkedList.insertAfter({}, 9);
-      }).to.throw();
-    });
-  });
+  //   it("should raise exception when refNode is not a valid node", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     expect(function insertAfter() {
+  //       linkedList.insertAfter({}, 9);
+  //     }).to.throw();
+  //   });
+  // });
 
-  describe("The removeAfter method", () => {
-    it("should exist on the LinkedList prototype", () => {
-      expect(LinkedList.prototype.removeAfter).to.exist;
-      expect(typeof LinkedList.prototype.removeAfter).to.equal("function");
-    });
+  // describe("The removeAfter method", () => {
+  //   it("should exist on the LinkedList prototype", () => {
+  //     expect(LinkedList.prototype.removeAfter).to.exist;
+  //     expect(typeof LinkedList.prototype.removeAfter).to.equal("function");
+  //   });
 
-    it("should remove the node directly after the node referenced in arguments", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      linkedList.removeAfter(linkedList.findNode(6));
-      expect(linkedList.print()).to.equal("2, 6, 5");
-    });
+  //   it("should remove the node directly after the node referenced in arguments", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     linkedList.removeAfter(linkedList.findNode(6));
+  //     expect(linkedList.print()).to.equal("2, 6, 5");
+  //   });
 
-    it("should not make any change when argument passed in is invalid", () => {
-      linkedList.insertHead(3);
-      linkedList.insertHead(6);
-      linkedList.insertHead(2);
-      linkedList.removeAfter();
-      expect(linkedList.print()).to.equal("2, 6, 3, 5");
-    });
-  });
+  //   it("should not make any change when argument passed in is invalid", () => {
+  //     linkedList.insertHead(3);
+  //     linkedList.insertHead(6);
+  //     linkedList.insertHead(2);
+  //     linkedList.removeAfter();
+  //     expect(linkedList.print()).to.equal("2, 6, 3, 5");
+  //   });
+  // });
 });

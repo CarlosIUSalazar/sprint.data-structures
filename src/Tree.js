@@ -5,10 +5,12 @@ class Tree {
   }
 
   addChild(value) {
+    // COMPLEXITY: O(1)
     this.children.push(new Tree(value));
   }
 
   contains(value) {
+    // COMPLEXITY: O(n)
     let result = false;
     let inner = function(obj) {
       if (obj.value === value) {
@@ -23,6 +25,7 @@ class Tree {
   }
 
   remove(value) {
+    // COMPLEXITY: O(n2)
     let result = undefined;
     let recursion = (node) => {
       // console.log("node.childnre[0]",node.children[0].value)
@@ -53,9 +56,6 @@ Do not proceed until you are done with the basic
 requirements for ALL data structures in this exercise.
 
 */
-  traverseDepthFirst(fn) {}
-
-  traverseBreadthFirst(fn) {}
 }
 
 /*

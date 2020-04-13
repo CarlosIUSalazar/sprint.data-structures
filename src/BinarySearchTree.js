@@ -6,6 +6,7 @@ class BinarySearchTree {
   }
 
   insert(value) {
+    // COMPLEXITY: O(log N)
     const child = new BinarySearchTree(value);
     function hasChild(node) {
       if (value > node.value) {
@@ -29,6 +30,7 @@ class BinarySearchTree {
   }
 
   contains(value) {
+    //COMPLEXITY: O(log N)
     let hasValue = false;
     function hasChild(node) {
       if (node.value === value) {
@@ -46,6 +48,7 @@ class BinarySearchTree {
   }
 
   traverseDepthFirstInOrder(callback) {
+    //COMPLEXITY: O(log N)
     function hasChild(node) {
       if (!node.left) return callback(node);
       if (node.left) {

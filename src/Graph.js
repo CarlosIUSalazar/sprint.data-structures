@@ -4,6 +4,7 @@ class Graph {
   }
 
   addNode(node) {
+    // COMPLEXITY: O(1)
     //IF there's nothing there already then make it an empty array
     if (!this.nodes[node]) {
       this.nodes[node] = [];
@@ -12,6 +13,7 @@ class Graph {
   }
 
   addEdge(value1, value2) {
+    // COMPLEXITY: O(1)
     if (!this.contains(value1) || !this.contains(value2)) {
       return "Invalid node value";
     } else if (!this.nodes[value1.toString()].includes(value2)) {
@@ -21,11 +23,13 @@ class Graph {
   }
 
   removeEdge(node1, node2) {
+    // COMPLEXITY: O(n)
     this.nodes[node1] = this.nodes[node1].filter((v) => v !== node2); //Take the current list of Adjacent 1 and remove vertex2;
     this.nodes[node2] = this.nodes[node2].filter((v) => v !== node2); //Take the current list of Adjacent 2 and remove vertex1;
   }
 
   removeNode(node) {
+    // COMPLEXITY: O(n)
     delete this.nodes[node];
     for (const key in this.nodes) {
       let arrayOfLinks = this.nodes[key];
@@ -36,6 +40,7 @@ class Graph {
   }
 
   contains(value) {
+    // COMPLEXITY: O(n)
     if (value in this.nodes) {
       return true;
     }
@@ -43,6 +48,7 @@ class Graph {
   }
 
   hasEdge(value1, value2) {
+    // COMPLEXITY: O(1)
     let index1 = this.nodes[value2].indexOf(value1);
     let index2 = this.nodes[value1].indexOf(value2);
     if (index1 !== -1 && index2 !== -1) {

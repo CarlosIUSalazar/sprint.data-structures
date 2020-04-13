@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 function Node(value) {
   this.next = null;
   this.value = value;
@@ -14,6 +13,7 @@ class LinkedList {
   }
 
   appendToTail(value) {
+    // COMPLEXITY: O(1)
     let newNode = new Node(value); //childnode
 
     if (!this.head) {
@@ -31,6 +31,7 @@ class LinkedList {
   }
 
   removeHead() {
+    // COMPLEXITY: O(1)
     if (!this.head) {
       return undefined;
     }
@@ -42,6 +43,7 @@ class LinkedList {
   }
 
   findNode(value) {
+    // COMPLEXITY: O(n)
     let node = this.head;
     while (node.value !== value) {
       if (node.next === null) return null;
@@ -60,15 +62,16 @@ Do not proceed until you are done with the basic
 requirements for ALL data structures in this exercise.
 */
 
-  forEach(callback) {}
+  //   forEach(callback) {}
 
-  print() {}
+  //   print() {}
 
-  insertHead(value) {}
+  //   insertHead(value) {}
 
-  insertAfter(refNode, value) {}
+  //   insertAfter(refNode, value) {}
 
-  removeAfter(refNode) {}
+  //   removeAfter(refNode) {}
+  //
 }
 
 module.exports = LinkedList;
