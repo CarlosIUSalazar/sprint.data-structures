@@ -42,15 +42,12 @@ class LinkedList {
   }
 
   findNode(value) {
-    if (!this.head) {
-      return undefined;
+    let node = this.head;
+    while (node.value !== value) {
+      if (node.next === null) return null;
+      node = node.next;
     }
-    let current = this.head;
-    while (current.next) {
-      if (current.value === value) {
-        return current;
-      }
-    }
+    return node;
   }
 
   /*
