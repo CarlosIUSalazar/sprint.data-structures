@@ -1,322 +1,320 @@
-# データ構造
-### This was created during my time as a [Code Chrysalis](https://codechrysalis.io) Student
+# Data Structures
 
-## 目次
+## Table of Contents
 
-1.  [導入](#導入)
-1.  [各トピックの概要](#各トピックの概要)
-1.  [環境](#環境)
-    1.  [依存パッケージのインストール](#依存パッケージのインストール)
-1.  [目的 & 説明](#目的%20&%20説明)
-    1.  [基本演習](#基本演習)
-    1.  [中級演習](#中級演習)
-    1.  [上級演習](#上級演習)
-1.  [参考資料](#参考資料)
-1.  [コントリビューション](#コントリビューション)
+1.  [Introduction](#introduction)
+1.  [Overview of Topics](#overview-of-topics)
+1.  [Environment](#environment)
+    1.  [Installing Dependencies](#installing-dependencies)
+1.  [Objectives & Instructions](#objectives-and-instructions)
+    1.  [Basic Requirements](#basic-requirements)
+    1.  [Medium Requirements](#medium-requirements)
+    1.  [Advanced Requirements](#advanced)
+1.  [Resources](#resources)
+1.  [Contributing](#contributing)
 
-## 導入
+## Introduction
 
-この世界では、データベースを作ったり、コードを実行したり、ブラウザに「 www.example.com 」を入力した時ユーザーを正しい場所へ案内するために、さまざまなデータ構造が活用されています。
-とはいえ複雑な技術に取り組む前に、まずは基本的なデータ構造をおさえておきましょう。
+In the wild, multiple data structures are combined to create data bases, execute your code, and map you to the right path when you type "www.example.com" into the browser. However, before we dive into more complex technologies, we will start with the foundational data structures.
 
-エンジニアとして、私たちはさまざまなデータを扱っており、それらは格納したり、アクセスしたり、順番を並び替えたり、UI 上に表示したりします。私たちが書いているコード自体も単純なデータであり、それを解析してデータ構造に落とし込むことで、コードの最適化や実行が実現されています。今回の演習の内容は、あらゆる偉大なエンジニアにとっての基礎知識となるもので、テクニカル・インタビューを通過するためだけでなく、ソフトウェアに関してよく理解した上で判断を下したり、物事が深層ではどのように動いているか、自分自身の理解を深めたりするために必要なものとなっています。
+As engineers, we are working with various data that must be stored, accessed, sorted, and presented in a UI and more. Even the code itself, that we write is simply data, which is parsed and arranged into a data structure so that it can be optimized and executed. The content in this exercise is foundational knowledge for all great software engineers not only to succeed at technical interviews but also to make informed decisions about software and deepening your understanding of how things work under the hood.
 
-この演習では、JavaScript を用いて、一般によく知られているいくつかのデータ構造を実際に作ってもらいます。新たなデータ構造について学習する際は、以下のステップを参考にしてください。なお、データ構造を利用した完璧なソリューションというものは存在しません。したがって、それぞれのデータ構造は、どういった問題に対して有効なのか、そしてそのデータ構造にはどういった限界があるのか、といったことを念頭に置きながら課題を解き進めていってください。
+In this exercise, you will implement common data structures using JavaScript. We recommend that you follow these steps when learning a new data structure. There is no perfect data structure solution, so be mindful of what problems each data structure is best suited to solve as well as its limitations.
 
-1.  メンタルモデルを作る
-    - モデルを描き出す
-    - 基本的な操作を備えた API を大まかに書き出す
-      - 典型的な操作としては、追加や削除、検索、更新などがありますが、データ構造によっては差異があります。
-    - テストを読んで、より明確なイメージをつかむ
-1.  組み立てる
-    - 疑似コードで実装方法を書き出す
-    - 実際の例を用いて疑似コードの内容を確かめる
-    - コードを書く
-    - いくつかのエッジケースについても想定できているか検討する
-1.  使ってみる
-    - 作ったデータ構造が動くか、試してみましょう！
-    - テストを書き足して、よりさまざまなエッジケースに対応できているか確認する
-    - 必要に応じてアルゴリズムを組み合わせてみる
-1.  分析する
-    - 時間計算量はいくらか？
-    - どうすれば最適化できるか？
+1.  Create a mental model
+    - Draw it out
+    - Sketch out the API with the basic operations
+      - Typical operations are add, remove, lookup/find, and update but may vary by data structure.
+    - Read the tests to form a clearer picture
+1.  Build it
+    - Pseudocode the implementation
+    - Walk through your pseudocode thoroughly with an example
+    - Code it
+    - Consider edge cases and make sure they are handled
+1.  Use it
+    - Put your data structure to work!
+    - Write some more tests that will check for greater edge cases
+    - Pair it with an algorithm if needed
+1.  Analyze it
+    - What is the time complexity?
+    - How can you optimize?
 
-## 各トピックの概要
+## Overview of Topics
 
-### 連結リスト
+### Linked Lists
 
-![連結リスト](./img/linked-list.png)
+![linked-list](./img/linked-list.png)
 
-連結リストは線形データ構造のひとつで、配列に大変よく似ています。配列はデータを隣接しあったメモリブロックに格納しますが、連結リストのデータは次の要素を指すポインタによってお互いに繋がっています。
+A linked list is a linear data structure that is very similar to an array. An array stores it's data in a contiguous block of memory, while the data in a linked list is connected with a pointer to the next element.
 
-#### なぜ連結リストを用いるのか
+#### Why Linked List
 
-配列でも似たような種類の線形データを格納することはできますが、配列の末尾以外の場所では挿入と消去ができず、それぞれのインデックスを更新するためにデータ構造全体をシフトしていく作業には無駄が多いため、連結リストが必要になってきます。
+Arrays can be used to store linear data of similar types, but insertion and removal from anywhere except the end of the array can be very expensive because you need to shift the entire data structure to accommodate the index number updates.
 
-たとえば、昇順に整理された ID の配列 `id` を考えてみましょう。
+For example we maintain a sorted list of IDs in an array, `id`:
 
 `const id = [1000, 1010, 1050, 2000, 2040];`
 
-もしここに新たな ID 1005 を挿入し、昇順に並び替えようとすると、1000 より後ろの要素すべてを移動して、インデックスに 1 を足さなければいけません。
-また、消去においても同様で、なにか特別なテクニックを用いない限り、配列から要素を除く作業には無駄が生じます。たとえば、`id` から 1010 を消去する場合、1010 以降のすベての要素は、インデックスを 1 つ減らさなければいけません。
+If we insert a new ID 1005 and need to maintain the sorted order, we have to move all the elements after 1000 (excluding 1000) up one index location.
+Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in `id`, everything after 1010 has to be shifted down one index.
 
-#### （配列に対する）連結リストの優位性
+#### Linked List Advantages (over arrays)
 
-1.  動的なサイズを持つ（JS 以外の言語では特に問題になります）
-1.  挿入 / 消去が容易
+1.  Dynamic size (this matters more in languages other than JS)
+1.  Ease of insertion/deletion
 
-#### 欠点
+#### Drawbacks
 
-- 任意の要素にランダムにアクセスすることはできません。連結リストでは、最初のノードから順番にたどっていく必要があります。たとえば、配列の `id[0]` にアクセスするために必要な検索時間は一定ですが、連結リストではそうではありません。要素を検索するためには、連結リスト全体をループしなければいけないからです。
-- リストの各要素が `next` ポインタを持つので、そのポインタ一つ一つのために余分なメモリー空間を消費する必要があります。
+- Random access is not allowed We have to access elements sequentially starting from the first node. For example, `id[0]` is a constant time lookup in an array but is not possible in a linked list. You must traverse through the linked list to do a lookup.
+- Extra memory space for the `next` pointer is required with each element of the list.
 
-### ツリー構造（木構造）
+### Trees
 
-DOM を触ったことがあれば、ツリー構造（木構造）には見覚えがあることでしょう！　ツリー構造は DOM における親要素や子要素のような、階層型データを扱うのに優れています。ツリー構造を用いれば、これまでに習った連結リストやスタック、キューのような、ノード間で 1 つの関係しか保有できないデータ構造の概念を拡張することができます。ツリー構造では、ノード間でさまざまな関係を構築することが可能で、配列や連結リスト、スタックやキューが線形データ構造であるのに対し、ツリー構造は階層型データ構造をしています。
+If you have played with the DOM, you have already interacted with a tree data structure! Trees represent hierarchical data such as parent and child elements in the DOM. With trees, we extend the concept of the linked data structures we have covered before like linked list, stack, or a queue, which only have one relationship between nodes. Trees may have multiple relationships among its nodes and unlike arrays, linked lists, stack and queues, which are linear data structures, trees are hierarchical data structures.
 
-#### ツリー構造に関する語彙
+#### Tree Vocabulary
 
-ツリーの頂上を形成するノードのことを、ツリー構造の根ノードと呼びます。ある要素の直下にある要素は、子ノードといい、要素の真上に位置する要素については親ノードといいます。そして子ノードのない要素は葉ノードと呼ばれます。
+The top-most node is called root of the tree. The elements that are directly under an element are called its children. The element directly above something is called its parent. Finally, elements with no children are called leaves.
 
-![ツリー構造の語彙](./img/tree-vocab.png)
+![tree-vocab](./img/tree-vocab.png)
 
-#### なぜツリー構造を用いるのか
+#### Why Trees
 
-- そもそもヒエラルキーを形成するような情報を扱う際には、ツリー構造を使うとよいかもしれません。たとえば、DOM が良い例です。
+- One reason to use trees might be because you want to store information that naturally forms a hierarchy. For example the DOM:
 
-![ツリー階層](./img/tree-hierarchy.png)
+![tree-hierarchy](./img/tree-hierarchy.png)
 
-- （二分探索木のように順番が整った）ツリー構造は検索に適しています（連結リストより速く、配列よりは遅い）。
-- ツリー構造は挿入と削除にも適しています（配列より速く、順番の整理されていない連結リストよりも遅い）。
-- 連結リストと同じく、ノードの連結にポインタを用いるため、ノード数に上限はありません。
+- Trees (with some ordering e.g., BST) provide moderate access/search (quicker than linked list and slower than arrays).
+- Trees provide moderate insertion/deletion (quicker than arrays and slower than unordered linked lists).
+- Like linked lists, trees don’t have an upper limit on number of nodes as nodes are linked using pointers.
 
-#### ツリー構造の主な応用例
+#### Main applications of trees include
 
-1.  DOM のような階層型データの整理・操作
-1.  情報の検索を容易にしたいとき
-1.  整列されたデータの操作
-1.  ルーティング・アルゴリズム
-1.  決定木を利用した多段階意思決定の実現
-1.  抽象構文木を用いた統語論の構文解析
+1.  Organize and manipulate hierarchical data, like the DOM
+1.  Make information easy to search
+1.  Manipulate sorted lists of data
+1.  Router algorithms
+1.  Form of a multi-stage decision-making, using decision trees
+1.  Parsing syntax into ASTs, abstract syntax trees
 
-#### 二分木
+#### Binary Tree
 
-あるツリー構造の要素が 2 つ以下の子ノードを持つとき、そのツリーは二分木と呼ばれます。二分木の各要素は 2 つの子ノードしか持てないので、その子ノードは特に、左・右と呼ばれます。
+A tree whose elements have at most 2 children is called a binary tree. Since each element in a binary tree can have only 2 children, we typically name them the left and right child.
 
-### 二分探索木
+### Binary Search Trees
 
-二分探索木（BST）は、以下のような性質を持った二分木のデータ構造のことです。
+Binary search tree (BST) is a binary tree data structure which has the following properties:
 
-1.  あるノードの左の部分木には、そのノードより少ない数のキーを持ったノードだけが存在する。
-1.  あるノードの右の部分木には、そのノードより多い数のキーを持ったノードだけが存在する。
-1.  左・右の部分木もまた、二分探索木でなければならない。
-1.  同じノードがあってはならない。
+1.  The left subtree of a node contains only nodes with keys less than the node’s key.
+1.  The right subtree of a node contains only nodes with keys greater than the node’s key.
+1.  The left and right subtree each must also be a binary search tree.
+1.  There must be no duplicate nodes.
 
-![二分探索木](./img/bst-tree.png)
+![bst-tree](./img/bst-tree.png)
 
-#### なぜ二分探索木が用いられるのか
+#### Why BST
 
-BST は、要素の検索を高速に（ log(n) で）したいときに用いられます。上に記した BST の性質によって、キー間の順番には整合性が保たれており、検索、そして最小・最大の計算などの操作が高速でできます。順番が整理されていない場合は、探しているキーを全てのキーと照合しなければいけない可能性があります。
+BST is used when quick searching of an element (in log(n)) is required. The above properties of a BST provide an ordering among keys so that the operations like search, minimum and maximum can be done fast. If there is no ordering, then we may have to compare every key to search for a given key.
 
-### グラフ
+### Graphs
 
-グラフは次の 2 つの構成要素から成り立つデータ構造のことです。
+Graph is a data structure that consists of following two components:
 
-1.  有限数の頂点（ノード）の集合
-1.  有限数の、整理されたノードのペア（エッジ）。これが頂点同士の関係性を示す。エッジには方向、重み、値やコストなどが含まれる。
+1.  A finite set of vertices also called as nodes.
+1.  A finite set of ordered pairs of nodes called an edge, which represents the relationship between the vertices. The edges may contain a direction and/or a weight/value/cost.
 
-![グラフ](./img/graph.png)
+![graph](./img/graph.png)
 
-#### なぜグラフを用いるのか
+#### Why Graphs
 
-グラフは、現実世界のさまざまな現象を表すために利用されています。とりわけ、ネットワークを表現するために使われることが多いといえるでしょう。ここでのネットワークには、地図上の道路や、回線網、多孔質な物質のネットワーク状をした穴の関係性や迷路などを含みます。グラフは Facebook や Twitter のような SNS にも用いられています。もしかしたら、Facebook のグラフ API などは聞いたことがあるかもしれません。
+Graphs are used to represent many real life applications. In particular graphs are often used to represent networks. The networks may include roads on a map, a circuit network, a network of holes in some porous material or a maze. Graphs are used in social networks like Facebook or Twitter. You may have even heard of Facebook graph search.
 
-#### Facebook の場合
+#### Facebook Example
 
-Facebook を人々とその友人からなるネットワークとみなすと、それぞれの人物は頂点（ノード）として表されます。各ノードは一つの構造体であり、その人の ID や名前、ジェンダーや地域といった情報を格納することになります。それぞれの辺は、Facebook のグラフ上の人物がほかの人々とつながっていることを示します。このような、Facebook 上の友達との関係性、これがエッジです。
+If we think about Facebook as being a network of people and their friends, each person is represented with a vertex (or node). Each node is a structure and contains information like person id, name, gender and locale. Each vertex, which represent people in the Facebook graph has relationships with other people. These relationships with Facebook friends are the edges.
 
-下の図は、6 つの頂点から成る無向グラフの例です。
+Following is an example undirected graph with 6 vertices.
 
-![グラフの語彙](./img/graph-vocab.png)
+![graph-vocab](./img/graph-vocab.png)
 
-#### グラフの表し方
+#### Representing Graphs
 
-下の 2 つが、もっとも一般的なグラフの表し方です。
+Following two are the most commonly used representations of graph.
 
-1.  隣接行列
-1.  隣接リスト
+1.  Adjacency Matrix
+1.  Adjacency List
 
-ほかにもグラフは、接続行列や incidence list などによって表すことができます。グラフを使用するかどうかは状況によりけりで、どのような操作に利用するのか、またその操作は容易なのか、などによって判断が分かれます。今回の演習では、グラフを隣接リストとして扱います。
+There are other representations also like, Incidence Matrix and Incidence List. The choice of the graph representation is situation specific. It depends on the type of operations to be performed and ease of use. In this exercise we will represent the graph as an adjacency list.
 
-接続リストが実質ツリー構造をしているように、ツリー構造は事実上、グラフです。
+Just like a linked list is a type of tree, a tree is a type of graph.
 
-### ヒープ
+### Heaps
 
-二分ヒープは、次のような性質を持った二分木のことを指します。
+A Binary Heap is a Binary Tree with following properties:
 
-1.  完全にバランスの取れたツリーである（最下層以外では、左または右の子ノードしか持たないノードが存在せず、最下層は残った全てのキーを保持している）。この性質があるため、二分ヒープは配列に格納しやすい。
-1.  二分ヒープは、最小ヒープまたは最大ヒープのいずれかである。最小ヒープでは、根ノードのキーがその二分ヒープのあらゆるキーにおける最小を表す。この性質は、二分ヒープ中のあらゆるノードについて再帰的にあてはまる。最大ヒープも最小ヒープと同様の仕組みから成り立つ。
+1.  It’s a complete tree (All levels are completely filled except possibly the last level and the last level has all keys as left as possible). This property of Binary Heap makes them suitable to be stored in an array.
+1.  A Binary Heap is either Min Heap or Max Heap. In a Min Binary Heap, the key at root must be minimum among all keys present in Binary Heap. The same property must be recursively true for all nodes in Binary Tree. Max Binary Heap is similar to Min Heap.
 
-#### なぜヒープを用いるのか
+#### Why Heaps
 
-最小または最大を表す要素をコンスタントに変わらない時間で取り出す必要がある際に、ヒープまたは優先度付きキューが用いられます。
+A heap or a priority queue is used when the minimum or maximum element needs to be fetched in constant time.
 
-#### 二分ヒープはどう表すのか？
+#### Representing a Binary Heap?
 
-二分ヒープは完全二分木です。二分ヒープを表す典型的な方法は、配列です。下の図は、最小ヒープをツリー構造で表しており、それがどう配列に格納されるかを示しています。
+A Binary Heap is a Complete Binary Tree. A binary heap is typically represented as array. Here is a diagram of a min-heap represented as a tree and how it would be stored as an array
 
-![最小ヒープ](./img/min-heap.png)
+![min-heap](./img/min-heap.png)
 
-#### ヒープの応用例
+#### Applications of Heaps
 
-1.  ヒープソート。ヒープソートは二分ヒープを用いており、O(nLogn) の計算量オーダーで配列をソートします。
-1.  優先度付きキュー。優先度付きキューは、二分ヒープを用いることで効果的に実装することができます。なぜなら、insert() 、delete() 、extractmax() 、decreaseKey() といった操作を O(logn) で実行できるからです。
-1.  グラフアルゴリズム。グラフアルゴリズムは特に、最短経路問題のダイクストラ法や最適化問題のプリム法などに利用されています。
+1.  Heap Sort: Heap Sort uses Binary Heap to sort an array in O(nLogn) time.
+1.  Priority Queue: Priority queues can be efficiently implemented using Binary Heap because it supports insert(), delete() and extractmax(), decreaseKey() operations in O(logn) time.
+1.  Graph Algorithms: The priority queues are especially used in Graph Algorithms like Dijkstra’s Shortest Path and Prim’s Minimum Spanning Tree.
 
-### ハッシュテーブル
+### Hash Tables
 
-ハッシュテーブルは、キーと値のペアを格納し、次の 2 つの要素から成り立っています。
+A hash table stores key-value pairs and is made up of two components:
 
-1.  ハッシュを生み出すハッシュ関数。個々のハッシュは、ある特定のインデックスに対応するキーを持っている。
-1.  キーと値のペアを格納する配列。
+1.  A Hashing Function that creates a hash with the key that maps to a particular index.
+1.  An array that stores the key-value pair.
 
-![ハッシュテーブル](./img/hash-table.png)
+![hash-table](./img/hash-table.png)
 
-#### なぜハッシュテーブルを用いるのか
+#### Why Hash Tables
 
-ハッシュテーブルは、キーを用いて、一定時間である値を取り出したり、挿入したり、あるいは消去したりするのに使われます。比較的シンプルに扱うことができるため、ハッシュテーブルはもっとも人気のあるデータ構造の一つとなっています。
+A hash table is used to retrieve, insert, and remove an value in constant time using a key. Along with its relative simplicity, this makes hash tables one of those most popular data structures.
 
-JavaScript のオブジェクトを使うときはいつでも、深層部でこのハッシュテーブルが用いられています。
+You use hash tables whenever you use a JavaScript object, which is implemented as a hash table underneath the surface.
 
-## 環境
+## Environment
 
-### 依存パッケージのインストール
+### Installing Dependencies and Starting Up
 
-依存パッケージをインストールする方法は以下の通り。
+To install dependencies:
 
 ```shell
 npm install [OR] yarn install
 ```
 
-## 目的 & 説明
+## Objectives and Instructions
 
-### 学習の目的
+### Learning Objectives
 
-- 抽象的なデータ構造の概念を JavaScript のコードで表現できるようになること。
-- 以下のデータ構造の基本的な仕組みや操作方法を理解すること。
-  - 連結リスト
-  - ツリー構造
-  - 二分探索木
-  - グラフ
-  - ハッシュテーブル
-  - ヒープ
-- データ構造の基本的な操作に必要な計算量を分析できるようになること。
-- 各データ構造の長所と短所および実用例を説明できるようになること。
+- Be able to translate an abstract data structure concept into JavaScript code.
+- Understand the basic interfaces and common operations of the following data structures:
+  - linked list
+  - tree
+  - binary search tree
+  - graph
+  - hash table
+  - heap
+- Be able to analyze the runtime complexity of common operations of a data structure.
+- Be able to understand the pros and cons of each data structure, as well as common use cases.
 
-## 基本演習
+## Basic Requirements
 
-下記のデータ構造のためにクラスを作っていく際、テストを自分のロードマップとして利用しましょう。テストはあらゆる可能性をカバーしているわけではありません。もしも足りないと思うテストがあれば、自分で適宜補ってください。また、既存のテストは、あなたの書くコードのスタイルや解き方を想定したものではない可能性もあります。その場合は、テストを消したり変更を施したりしても構いません。テストはあくまでガイドラインであり、絶対のルールではありません！　意図的にあらゆる可能性をカバーしていないこともありますので、その場合も自分でテストを補ってくださいね！
+Use the tests as your roadmap as you create classes for the following data structures. The tests will not always cover every case so make sure you fill in any missing tests as they arise. Existing tests might also make assumptions about your code, feel free to remove/change those assumptions, they are a guideline, not a requirement! They also intentionally don't cover all the cases, so please write your own tests, too!
 
-**基本演習内の全てのデータ構造のテストをクリアするまでは、先の演習に進まないこと。**
+**Don't attempt the extra credit until you have completed and ensured the testing was complete for the basic requirements for all the data structures.**
 
 - [ ] `LinkedList`
 
-  - [ ] `LinkedList` は ES6 のクラスのインスタンスを返す
-  - [ ] `.appendToTail(value)` は、末尾に新たなノードを追加し、その新たなノードを返す
-  - [ ] `.removeHead()` は、連結リストの先頭のノードを取り除き、その取り除いたノードを返す
-  - [ ] `.findNode(value)` は、引数として渡されたものと同じ値を持つ最初のノードを返し、もしその値が見つからなかった場合には null を返す
-  - [ ] 時間計算量はいくら？
+  - [ ] `LinkedList` returns an instance of an ES6 class
+  - [ ] `.appendToTail(value)` adds a new node to the tail and returns the new node
+  - [ ] `.removeHead()` removes the head node of the linked list and returns removed head node
+  - [ ] `.findNode(value)` returns first node that has a value matching what was passed in and returns null when no value is found
+  - [ ] What are the time complexities?
 
 - [ ] `Tree`
 
-  - [ ] `Tree` は、ES6 のクラスのインスタンスを返す
-  - [ ] `.addChild(value)` は、ツリー / サブツリーに子ノードを追加し、その新しい子ノード（これ自体も Tree のインスタンスとなるはず）を返す
-  - [ ] `.contains(value)` は、引数としてとった値がツリー内に存在すれば true を返し、存在しなければ false を返す
-  - [ ] `.remove(value)` は、引数の値をツリーから取り除き、その取り出された値を返す。このメソッドについては、自分でテストを書いてみましょう。
-  - [ ] 時間計算量はいくら？
+  - [ ] `Tree` returns an instance of an ES6 class
+  - [ ] `.addChild(value)` adds a child to tree/subtree and returns the new child node (which should be a tree instance)
+  - [ ] `.contains(value)` return true if value is in tree, false if not
+  - [ ] `.remove(value)` removes the value from tree and returns the removed value. You may need to write tests for this.
+  - [ ] What are the time complexities?
 
 - [ ] `BinarySearchTree`
 
-  - [ ] `BinarySearchTree` は、ES6 のクラスのインスタンスを返す
-  - [ ] `.insert(value)` は、引数の値をツリー内の正しい位置に挿入し、ツリーを返す（チェーン状になっているため）
-  - [ ] `.contains(value)` は、引数の値がツリー内に存在すれば true を返し、存在しなければ false を返す
-  - [ ] `.traverseDepthFirstInOrder(callback)` は、深さ優先探索（まず左の部分木から始め、次に現在のノード、そして右の部分木に移動）によって、すべてのノードに対しコールバックを実行し、undefined を返す
-  - [ ] 時間計算量はいくら？
+  - [ ] `BinarySearchTree` returns an instance of an ES6 class
+  - [ ] `.insert(value)` inserts a value into the correct position within the tree and returns the tree (for chaining purposes)
+  - [ ] `.contains(value)` returns true if the value is in the tree, false if not
+  - [ ] `.traverseDepthFirstInOrder(callback)` invokes the callback for every node in a depth-first in-order (visit left branch, then current node, than right branch). Returns undefined.
+  - [ ] What are the time complexities?
 
-  > 注意： 間順走査（In-Order traversal）は、二分木においてもっともよく知られた、各要素へのアクセス方法です。二分探索木においては、ノードを昇順（in ascending order）でループ処理することになります（それゆえ in-order traversal と呼ばれる）。
+  > Note: In-Order traversal is most common type for binary trees. For binary search tree, this visits the nodes in ascending order (hence the name).
 
 - `Graph`
 
-  - [ ] `Graph` は、ES6 のクラスのインスタンスを返す
-  - [ ] `.addNode(value)` は、プリミティブ型の値を持つノードをグラフに追加し、undefined を返す
-  - [ ] `.removeNode(value)` は、グラフからノードを取り除き、undefined を返す
-  - [ ] `.contains(value)` は、ブーリアン型を返す。もし引数の値がグラフ内にあれば true を、なければ false を返す
-  - [ ] `.addEdge(value1, value2)` は、undefined を返す。もしもどちらの値もそのグラフ内に存在すれば、2 つのノード間にエッジを作る
-  - [ ] `.removeEdge(value1, value2)` は、undefined を返す。
-  - [ ] `.hasEdge(value1, value2)` は、ブーリアン型を返す。もしエッジが存在すれば true を、存在しなければ false を返す
-  - [ ] 時間計算量はいくら？
+  - [ ] `Graph` returns an instance of an ES6 class
+  - [ ] `.addNode(value)` adds a node to graph with a primitive value. Returns undefined.
+  - [ ] `.removeNode(value)` removes a node from graph and returns undefined.
+  - [ ] `.contains(value)` returns boolean. Returns true if value is found in graph, false otherwise
+  - [ ] `.addEdge(value1, value2)` returns undefined. Create connection between two nodes if they're both present in the graph
+  - [ ] `.removeEdge(value1, value2)` returns undefined. Remove connection between two nodes
+  - [ ] `.hasEdge(value1, value2)` returns boolean. Returns true if edge exists, false otherwise
+  - [ ] What are the time complexities?
 
 - [ ] `HashTable`
-  - [ ] `HashTable` は、ES& のクラスのインスタンスを返す
-  - [ ] `.insert(key, value)` は、格納用の配列にキーと値の組を格納する。もしもそのキーが配列内にすでに存在する場合、既存の値を新しい値に置き換える。キーを整数と対応させて、所定のインデックスに値を格納するため、ハッシュ関数を使うこと。データが衝突する可能性に注意。
-  - [ ] `.retrieve(key)` は、引数のキーに対応する値を返す
-  - [ ] `.remove(key)` は、格納用の配列からキーと値を取り出し、操作が成功したかどうかをブーリアン型で返す
-  - [ ] 時間計算量はいくら？
+  - [ ] `HashTable` returns an instance of an ES6 class
+  - [ ] `.insert(key, value)` stores the key value pair in the storage array. If the key already exists, replace the stored value with the new value. Use the hashing function to map the key to an integer and store the value at the corresponding index. Account for the possibility of collisions
+  - [ ] `.retrieve(key)` returns the value associated with the key
+  - [ ] `.remove(key)` removes the key and value from the storage array and returns a boolean if successful
+  - [ ] What are the time complexities?
 
-## 中級演習
+## Medium Requirements
 
 - [ ] `Heap`
-  - [ ] `Heap` は、ES6 のクラスのインスタンスを返す
-  - [ ] `insert(value)` は、そのヒープ・プロパティおよびシェイプ・プロパティに応じて、ヒープに値を追加し、undefined を返す
-  - [ ] `removeMax()` は、ヒープから最大値を取り除き、ヒープを再整理し、新たな最大値を返す
-  - [ ] 時間計算量はいくら？
+  - [ ] `Heap` returns an instance of an ES6 class
+  - [ ] `insert(value)` adds a value to heap according to the shape and heap property and returns undefined
+  - [ ] `removeMax()` removes the max value from the heap, reorder the heap, and returns the max value
+  - [ ] What are the time complexities?
 
-## 上級演習
+## Advanced Requirements
 
 - [ ] `LinkedList`
 
-  - [ ] `.forEach(callbackFn)` は、各ノードの値を引数にとってコールバック関数を実行し、何も返さない
-  - [ ] `.print()` は、リスト内の全ての値を文字列にして返す（例： '0, 1, 2, 3'）
-  - [ ] `.insertHead(value)` は、引数の値を持つ新たなノードを先頭に追加し、その新しく追加されたノードを返す
-  - [ ] `.insertAfter(refNode, value)` は、第二引数として渡された値に紐付けられた新たなノードを refNode のあとに挿入し、その新しく挿入されたノードを返す
-  - [ ] `.removeAfter(refNode)` は、refNode のあとに来るノードを取り除き、その取り除かれた古いノードを返す
+  - [ ] `.forEach(callbackFn)` invokes the callback function with the value of each node and does not return anything.
+  - [ ] `.print()` returns string with all values in list (ex: '0, 1, 2, 3')
+  - [ ] `.insertHead(value)` inserts a new head node at the beginning of the list with the value passed in and returns the new head node.
+  - [ ] `.insertAfter(refNode, value)` inserts the new node associated with value passed in after refNode and returns the new node
+  - [ ] `.removeAfter(refNode)` removes the node after the refNode and returns the old node
 
 - [ ] `Tree`
 
-  - [ ] `.traverseDepthFirst(callback)` は、undefined を返す。深さ優先探索によってすべてのノードでコールバックを実行する
-  - [ ] `.traverseBreadthFirst(callback)` は、undefined を返す。幅優先探索によってすべてのノードに対しコールバックを実行する
+  - [ ] `.traverseDepthFirst(callback)` returns undefined. Invoke the callback for every node in a depth-first order.
+  - [ ] `.traverseBreadthFirst(callback)` returns undefined. Invoke the callback for every node in a breadth-first order.
 
 - [ ] `BinarySearchTree`
 
-  - [ ] `.traverseBreadthFirst(callback)` は、幅優先探索によってすべてのノードに対しコールバックを実行し、undefined を返す
-  - [ ] `.traverseDepthFirstPreOrder(callback)` は、前順（現在のノードを調査してから子ノードに移る）の深さ優先探索によってすべてのノードに対しコールバックを実行する
-  - [ ] `.traverseDepthFirstPostOrder(callback)` は、後順（子ノードを調査してから現在のノードに移る）の深さ優先探索によってすべてのノードに対しコールバックを実行する
-  - [ ] `.checkIfFull()` は、すべてのノードが 0 個または 2 個のノードを持っている（1 つしか子ノードを持たないノードが存在しない）ときに true を返し、BST が完全でないときに false を返す
-  - [ ] `.checkIfBalanced()` は、BST が平衡であるときにブーリアン型を返す。この演習では、最小の高さと最高の高さの差が 1 以下であるときに平衡であるとする。分木の高さは根からの階層の数とする。
+  - [ ] `.traverseBreadthFirst(callback)` invokes the callback for every node in a breadth-first order and returns undefined
+  - [ ] `.traverseDepthFirstPreOrder(callback)` invoke the callback for every node in a depth-first pre-order (visits current node before its child nodes)
+  - [ ] `.traverseDepthFirstPostOrder(callback)` invokes the callback for every node in a depth-first post-order (visit the current node after its child nodes) and returns undefined
+  - [ ] `.checkIfFull()` returns true if every node has either zero or two children (no nodes have only one child) and false if the BST is not full
+  - [ ] `.checkIfBalanced()` returns boolean if the BST is balanced. For this exercise, a BST is balanced if the minimum height and the maximum height differ by no more than 1. The height for a branch is the number of levels below the root.
 
 - [ ] `Graph`
 
-  - [ ] `forEach(callback)` は、undefined を返す。グラフの各要素にアクセスし、それぞれのノードに対し、引数として渡されたコールバックを一度だけ実行する。コールバック関数は各ノードにおいて、ノードの値・ノードの近傍・すべてのノードの 3 つを受け取るものとする。
-  - [ ] 深さ優先探索・幅優先探索による走査メソッドを実装せよ。これらのメソッドは、ループ処理を開始する最初のノードと、各ノードに対して実行されるコールバックを引数に取るものとする。コールバックは、2 つの実引数を受け取るものとし、1 つめはノードの値、2 つめはノード間の距離（ループ処理を開始したノードからそのノードまでを隔てるエッジの数）とする。
+  - [ ] `forEach(callback)` returns undefined. Traverse the graph and invoke the passed callback once for each node. The callback function receives the following for each node: node value, node Neighbors, all nodes.
+  - [ ] Implement traversal methods for depth-first and breadth-first traversal. The methods take a starting node and a callback that gets invoked for each node. The callback should receive two arguments: the node value and the distance (number of edges that separate the node from the starting node).
 
 - [ ] `HashTable`
-  - [ ] ハッシュテーブルをリサイズせよ。
-    - [ ] カウント（キーと値のペア数）がテーブルサイズの 75% を超えたら、テーブルサイズを 2 倍し、キー / 値のペアを再配分すること。
-    - [ ] カウントがテーブルサイズの 25% を下回ったら、テーブルサイズを 1/2 にし、キー / 値のペアを再配分すること。
-  - [ ] 二分探索木でハッシュテーブルを実装せよ。
+  - [ ] Resize the hash table:
+    - [ ] If the count becomes greater than 75% of the table size, double the table size and redistribute the key/value pairs
+    - [ ] If the count becomes less than 25% of the table size, cut the table size in half and redistribute the key/value pairs
+  - [ ] Implement a hash table with a binary search tree.
 
-## 参考資料
+## Resources
 
-Harvard CS50 Data Structure の映像
+Harvard CS50 Data Structure Videos:
 
-- [連結リスト入門](https://www.youtube.com/watch?v=5nsKtQuT6E8)
-- [ツリー構造と BST 入門](https://www.youtube.com/watch?v=mFptHjTT3l8)
-- [グラフ丹生右門](https://www.youtube.com/watch?v=h2d9b_nEzoA)
-- [ハッシュテーブル入門](https://www.youtube.com/watch?v=h2d9b_nEzoA)
-- [ヒープ入門](https://www.youtube.com/watch?v=t0Cq6tVNRBA)
+- [Intro to LinkedList](https://www.youtube.com/watch?v=5nsKtQuT6E8)
+- [Intro to Trees and BST](https://www.youtube.com/watch?v=mFptHjTT3l8)
+- [Intro to Graphs](https://www.youtube.com/watch?v=h2d9b_nEzoA)
+- [Intro to Hash Tables](https://www.youtube.com/watch?v=h2d9b_nEzoA)
+- [Intro Heaps](https://www.youtube.com/watch?v=t0Cq6tVNRBA)
 
-## コントリビューション
+## Contributing
 
-以下はカリキュラムに残し、この文章は削除してください。
+Leave the below in the curriculum and delete this sentence.
 
-問題を見つけましたか？　もっと改善できるところがありましたか？　それなら、[カリキュラムにコントリビュートしましょう](mailto:hello@codechrysalis.io)！
+See a problem? Can something be done better? [Contribute to our curriculum](mailto:hello@codechrysalis.io)!
